@@ -4,7 +4,7 @@
   "porta": "5432",
   "banco": "big_data",
   "schema": "ef",
-  "executado_em_utc": "2026-10-14T03:27:39.988354+00:00",
+  "executado_em_utc": "2026-10-14T03:40:30.962631+00:00",
   "total": 20706,
   "por_trimestre": [
     [
@@ -20,8 +20,8 @@
   ],
   "fontes": 2,
   "referencias": 47,
-  "bytes_tabela_indices": 8224768,
-  "bytes_banco": 131684031,
+  "bytes_tabela_indices": 8609792,
+  "bytes_banco": 132085439,
   "postgresql": "PostgreSQL 18.6 on x86_64-windows, compiled by msvc-19.44.35228, 64-bit",
   "ssl": false
 }

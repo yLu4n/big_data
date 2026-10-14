@@ -1,0 +1,8 @@
+{
+  "host": "pg-3746e955-bigdatalkb.f.aivencloud.com",
+  "port": "22835",
+  "dbname": "defaultdb",
+  "user": "avnadmin",
+  "sslmode": "require",
+  "connect_timeout": "15"
+}

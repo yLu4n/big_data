@@ -78,7 +78,16 @@
     "is_salvador": 3382
   },
   "total": 20706,
-  "nuvem": "Pendente: serviço Aiven ainda não criado",
+  "nuvem": {
+    "provedor": "Aiven",
+    "host": "pg-3746e955-bigdatalkb.f.aivencloud.com",
+    "porta": 22835,
+    "banco": "defaultdb",
+    "esquema": "ef",
+    "total": 20706,
+    "sslmode": "require",
+    "comprovacao": "evidencias/carga_nuvem.json e comparacao_integral_aiven.json"
+  },
   "artefatos": {
     "dicionario_tratado.json": {
       "bytes": 5253,
@@ -104,5 +113,6 @@
       "bytes": 38,
       "sha256": "bf30258f1de2dbfbb058de377d24f9896cc9cf1b496c75de28bf8ea172609fa7"
     }
-  }
+  },
+  "versao_entrega": "fase2-bahia-aiven-v1"
 }

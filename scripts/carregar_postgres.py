@@ -9,15 +9,18 @@ def load(root,local,config=None,substituir=False):
     if not (root/'dados/pnadc_ocupados_2026.csv').exists():
         from exportar_csv import exportar
         exportar(root/'dados')
-    dsn=os.environ.get('PGCONNECTION')
+    dsn=os.environ.get('PGCONNECTION') if config is None else None
     if dsn:params=conninfo_to_dict(dsn)
     else:
         config=config or root/'config/postgres.local.json'
         params=json.loads(config.read_text(encoding='utf-8'))
         if 'password' in params:raise SystemExit('Não guarde senha no arquivo de configuração; use PGPASSWORD ou o iniciador PowerShell.')
     params.setdefault('connect_timeout','10')
-    if not local and (params.get('sslmode')!='verify-full' or not params.get('sslrootcert')):
-        raise SystemExit('Carga em nuvem exige sslmode=verify-full e sslrootcert com o certificado CA do serviço.')
+    if not local:
+        if params.get('sslmode') not in ('require','verify-full'):
+            raise SystemExit('Carga em nuvem exige sslmode=require ou verify-full.')
+        if params.get('sslmode')=='verify-full' and not params.get('sslrootcert'):
+            raise SystemExit('Informe sslrootcert para usar verify-full com o CA do serviço.')
     with psycopg.connect(**params) as conn:
         with conn.cursor() as cur:
             cur.execute((root/'sql/01_estrutura.sql').read_text(encoding='utf-8'))
@@ -56,7 +59,7 @@ def load(root,local,config=None,substituir=False):
             size=cur.fetchone()
     evidence=root/'evidencias';evidence.mkdir(exist_ok=True)
     prefix='local' if local else 'nuvem'
-    record=dict(ambiente=prefix,host=params.get('host','localhost'),porta=params.get('port','5432'),banco=params.get('dbname'),schema='ef',executado_em_utc=datetime.now(timezone.utc).isoformat(),total=actual,por_trimestre=counts,fontes=nsources,referencias=nrefs,bytes_tabela_indices=size[0],bytes_banco=size[1],postgresql=version,ssl=ssl[0] if ssl else False)
+    record=dict(ambiente=prefix,sslmode=params.get('sslmode'),certificado_verificado=params.get('sslmode')=='verify-full',host=params.get('host','localhost'),porta=params.get('port','5432'),banco=params.get('dbname'),schema='ef',executado_em_utc=datetime.now(timezone.utc).isoformat(),total=actual,por_trimestre=counts,fontes=nsources,referencias=nrefs,bytes_tabela_indices=size[0],bytes_banco=size[1],postgresql=version,ssl=ssl[0] if ssl else False)
     (evidence/f'carga_{prefix}.json').write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding='utf-8')
     with (evidence/f'resumo_{prefix}.csv').open('w',encoding='utf-8',newline='') as f:
         w=csv.writer(f);w.writerow(cols);w.writerows(summary)

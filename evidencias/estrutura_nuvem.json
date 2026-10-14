@@ -1,0 +1,1603 @@
+{
+  "ambiente": "nuvem",
+  "banco": "defaultdb",
+  "endereco": "10.132.240.37/32",
+  "porta": 22839,
+  "esquema": "ef",
+  "verificado_em_utc": "2026-10-14T03:57:42.804956+00:00",
+  "tabelas": {
+    "dim_capital": 1,
+    "dim_uf": 1,
+    "dim_v2007": 2,
+    "dim_v2010": 6,
+    "dim_v4018": 4,
+    "dim_v4019": 2,
+    "dim_vd3004": 7,
+    "dim_vd4002": 2,
+    "dim_vd4009": 10,
+    "dim_vd4010": 12,
+    "fonte": 2,
+    "observacao": 20706
+  },
+  "campos": [
+    {
+      "table_name": "dim_capital",
+      "column_name": "codigo",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_capital",
+      "column_name": "rotulo",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_uf",
+      "column_name": "codigo",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_uf",
+      "column_name": "rotulo",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_v2007",
+      "column_name": "codigo",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_v2007",
+      "column_name": "rotulo",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_v2010",
+      "column_name": "codigo",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_v2010",
+      "column_name": "rotulo",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_v4018",
+      "column_name": "codigo",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_v4018",
+      "column_name": "rotulo",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_v4019",
+      "column_name": "codigo",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_v4019",
+      "column_name": "rotulo",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_vd3004",
+      "column_name": "codigo",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_vd3004",
+      "column_name": "rotulo",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_vd4002",
+      "column_name": "codigo",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_vd4002",
+      "column_name": "rotulo",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_vd4009",
+      "column_name": "codigo",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_vd4009",
+      "column_name": "rotulo",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_vd4010",
+      "column_name": "codigo",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "dim_vd4010",
+      "column_name": "rotulo",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "fonte",
+      "column_name": "arquivo",
+      "data_type": "character varying",
+      "character_maximum_length": 80,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "fonte",
+      "column_name": "sha256",
+      "data_type": "character",
+      "character_maximum_length": 64,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "fonte",
+      "column_name": "bytes",
+      "data_type": "bigint",
+      "character_maximum_length": null,
+      "numeric_precision": 64,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "fonte",
+      "column_name": "ano",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "fonte",
+      "column_name": "trimestre",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "ano",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "trimestre",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "uf",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "capital",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "upa",
+      "data_type": "character varying",
+      "character_maximum_length": 9,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "estrato",
+      "data_type": "character varying",
+      "character_maximum_length": 7,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "v1008",
+      "data_type": "character varying",
+      "character_maximum_length": 2,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "v1014",
+      "data_type": "character varying",
+      "character_maximum_length": 2,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "v1016",
+      "data_type": "character varying",
+      "character_maximum_length": 1,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "v1028",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": 18,
+      "numeric_scale": 8,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "v2003",
+      "data_type": "character varying",
+      "character_maximum_length": 2,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "v2007",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "v2009",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "v2010",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "vd3004",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "vd4002",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "vd4009",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "v4019",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "v4018",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "vd4010",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "vd4016",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": 12,
+      "numeric_scale": 2,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "is_bahia",
+      "data_type": "boolean",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "is_salvador",
+      "data_type": "boolean",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "is_empreendedor",
+      "data_type": "boolean",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "is_empreendedora",
+      "data_type": "boolean",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "formalizada",
+      "data_type": "boolean",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "arquivo_sha256",
+      "data_type": "character",
+      "character_maximum_length": 64,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "observacao",
+      "column_name": "linha_origem",
+      "data_type": "bigint",
+      "character_maximum_length": null,
+      "numeric_precision": 64,
+      "numeric_scale": 0,
+      "is_nullable": "NO"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "ano",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "trimestre",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "recorte",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "sexo",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "cor_raca",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "escolaridade",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "posicao",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "atividade",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "formalizada",
+      "data_type": "boolean",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "observacoes_amostra",
+      "data_type": "bigint",
+      "character_maximum_length": null,
+      "numeric_precision": 64,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "pessoas_estimadas",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "renda_media_ponderada",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_perfil_empreendedores",
+      "column_name": "rendas_informadas",
+      "data_type": "bigint",
+      "character_maximum_length": null,
+      "numeric_precision": 64,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "ano",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "trimestre",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "uf",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "capital",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "upa",
+      "data_type": "character varying",
+      "character_maximum_length": 9,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "estrato",
+      "data_type": "character varying",
+      "character_maximum_length": 7,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "v1008",
+      "data_type": "character varying",
+      "character_maximum_length": 2,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "v1014",
+      "data_type": "character varying",
+      "character_maximum_length": 2,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "v1016",
+      "data_type": "character varying",
+      "character_maximum_length": 1,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "v1028",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": 18,
+      "numeric_scale": 8,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "v2003",
+      "data_type": "character varying",
+      "character_maximum_length": 2,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "v2007",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "v2009",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "v2010",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "vd3004",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "vd4002",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "vd4009",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "v4019",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "v4018",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "vd4010",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "vd4016",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": 12,
+      "numeric_scale": 2,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "is_bahia",
+      "data_type": "boolean",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "is_salvador",
+      "data_type": "boolean",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "is_empreendedor",
+      "data_type": "boolean",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "is_empreendedora",
+      "data_type": "boolean",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "formalizada",
+      "data_type": "boolean",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "arquivo_sha256",
+      "data_type": "character",
+      "character_maximum_length": 64,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "linha_origem",
+      "data_type": "bigint",
+      "character_maximum_length": null,
+      "numeric_precision": 64,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_recortes",
+      "column_name": "recorte",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "ano",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "trimestre",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "recorte",
+      "data_type": "text",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "sexo",
+      "data_type": "smallint",
+      "character_maximum_length": null,
+      "numeric_precision": 16,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "observacoes_amostra",
+      "data_type": "bigint",
+      "character_maximum_length": null,
+      "numeric_precision": 64,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "ocupados_estimados",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "empreendedores_amostra",
+      "data_type": "bigint",
+      "character_maximum_length": null,
+      "numeric_precision": 64,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "empreendedores_estimados",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "empreendedoras_amostra",
+      "data_type": "bigint",
+      "character_maximum_length": null,
+      "numeric_precision": 64,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "empreendedoras_estimadas",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "renda_media_empreendedores",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "rendas_informadas",
+      "data_type": "bigint",
+      "character_maximum_length": null,
+      "numeric_precision": 64,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "peso_rendas_informadas",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "formalizados_estimados",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "sem_cnpj_estimados",
+      "data_type": "numeric",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "is_nullable": "YES"
+    },
+    {
+      "table_name": "v_resumo_geografico",
+      "column_name": "cnpj_ausente_amostra",
+      "data_type": "bigint",
+      "character_maximum_length": null,
+      "numeric_precision": 64,
+      "numeric_scale": 0,
+      "is_nullable": "YES"
+    }
+  ],
+  "restricoes": [
+    {
+      "tabela": "dim_capital",
+      "nome": "dim_capital_codigo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL codigo"
+    },
+    {
+      "tabela": "dim_capital",
+      "nome": "dim_capital_pkey",
+      "tipo": "p",
+      "definicao": "PRIMARY KEY (codigo)"
+    },
+    {
+      "tabela": "dim_capital",
+      "nome": "dim_capital_rotulo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL rotulo"
+    },
+    {
+      "tabela": "dim_uf",
+      "nome": "dim_uf_codigo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL codigo"
+    },
+    {
+      "tabela": "dim_uf",
+      "nome": "dim_uf_pkey",
+      "tipo": "p",
+      "definicao": "PRIMARY KEY (codigo)"
+    },
+    {
+      "tabela": "dim_uf",
+      "nome": "dim_uf_rotulo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL rotulo"
+    },
+    {
+      "tabela": "dim_v2007",
+      "nome": "dim_v2007_codigo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL codigo"
+    },
+    {
+      "tabela": "dim_v2007",
+      "nome": "dim_v2007_pkey",
+      "tipo": "p",
+      "definicao": "PRIMARY KEY (codigo)"
+    },
+    {
+      "tabela": "dim_v2007",
+      "nome": "dim_v2007_rotulo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL rotulo"
+    },
+    {
+      "tabela": "dim_v2010",
+      "nome": "dim_v2010_codigo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL codigo"
+    },
+    {
+      "tabela": "dim_v2010",
+      "nome": "dim_v2010_pkey",
+      "tipo": "p",
+      "definicao": "PRIMARY KEY (codigo)"
+    },
+    {
+      "tabela": "dim_v2010",
+      "nome": "dim_v2010_rotulo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL rotulo"
+    },
+    {
+      "tabela": "dim_v4018",
+      "nome": "dim_v4018_codigo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL codigo"
+    },
+    {
+      "tabela": "dim_v4018",
+      "nome": "dim_v4018_pkey",
+      "tipo": "p",
+      "definicao": "PRIMARY KEY (codigo)"
+    },
+    {
+      "tabela": "dim_v4018",
+      "nome": "dim_v4018_rotulo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL rotulo"
+    },
+    {
+      "tabela": "dim_v4019",
+      "nome": "dim_v4019_codigo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL codigo"
+    },
+    {
+      "tabela": "dim_v4019",
+      "nome": "dim_v4019_pkey",
+      "tipo": "p",
+      "definicao": "PRIMARY KEY (codigo)"
+    },
+    {
+      "tabela": "dim_v4019",
+      "nome": "dim_v4019_rotulo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL rotulo"
+    },
+    {
+      "tabela": "dim_vd3004",
+      "nome": "dim_vd3004_codigo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL codigo"
+    },
+    {
+      "tabela": "dim_vd3004",
+      "nome": "dim_vd3004_pkey",
+      "tipo": "p",
+      "definicao": "PRIMARY KEY (codigo)"
+    },
+    {
+      "tabela": "dim_vd3004",
+      "nome": "dim_vd3004_rotulo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL rotulo"
+    },
+    {
+      "tabela": "dim_vd4002",
+      "nome": "dim_vd4002_codigo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL codigo"
+    },
+    {
+      "tabela": "dim_vd4002",
+      "nome": "dim_vd4002_pkey",
+      "tipo": "p",
+      "definicao": "PRIMARY KEY (codigo)"
+    },
+    {
+      "tabela": "dim_vd4002",
+      "nome": "dim_vd4002_rotulo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL rotulo"
+    },
+    {
+      "tabela": "dim_vd4009",
+      "nome": "dim_vd4009_codigo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL codigo"
+    },
+    {
+      "tabela": "dim_vd4009",
+      "nome": "dim_vd4009_pkey",
+      "tipo": "p",
+      "definicao": "PRIMARY KEY (codigo)"
+    },
+    {
+      "tabela": "dim_vd4009",
+      "nome": "dim_vd4009_rotulo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL rotulo"
+    },
+    {
+      "tabela": "dim_vd4010",
+      "nome": "dim_vd4010_codigo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL codigo"
+    },
+    {
+      "tabela": "dim_vd4010",
+      "nome": "dim_vd4010_pkey",
+      "tipo": "p",
+      "definicao": "PRIMARY KEY (codigo)"
+    },
+    {
+      "tabela": "dim_vd4010",
+      "nome": "dim_vd4010_rotulo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL rotulo"
+    },
+    {
+      "tabela": "fonte",
+      "nome": "fonte_ano_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL ano"
+    },
+    {
+      "tabela": "fonte",
+      "nome": "fonte_arquivo_key",
+      "tipo": "u",
+      "definicao": "UNIQUE (arquivo)"
+    },
+    {
+      "tabela": "fonte",
+      "nome": "fonte_arquivo_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL arquivo"
+    },
+    {
+      "tabela": "fonte",
+      "nome": "fonte_bytes_check",
+      "tipo": "c",
+      "definicao": "CHECK ((bytes > 0))"
+    },
+    {
+      "tabela": "fonte",
+      "nome": "fonte_bytes_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL bytes"
+    },
+    {
+      "tabela": "fonte",
+      "nome": "fonte_pkey",
+      "tipo": "p",
+      "definicao": "PRIMARY KEY (sha256)"
+    },
+    {
+      "tabela": "fonte",
+      "nome": "fonte_sha256_check",
+      "tipo": "c",
+      "definicao": "CHECK ((sha256 ~ '^[0-9a-f]{64}$'::text))"
+    },
+    {
+      "tabela": "fonte",
+      "nome": "fonte_sha256_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL sha256"
+    },
+    {
+      "tabela": "fonte",
+      "nome": "fonte_trimestre_check",
+      "tipo": "c",
+      "definicao": "CHECK (((trimestre >= 1) AND (trimestre <= 4)))"
+    },
+    {
+      "tabela": "fonte",
+      "nome": "fonte_trimestre_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL trimestre"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "ck_recorte_bahia",
+      "tipo": "c",
+      "definicao": "CHECK ((uf = 29))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_ano_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL ano"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_arquivo_sha256_fkey",
+      "tipo": "f",
+      "definicao": "FOREIGN KEY (arquivo_sha256) REFERENCES ef.fonte(sha256)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_arquivo_sha256_linha_origem_key",
+      "tipo": "u",
+      "definicao": "UNIQUE (arquivo_sha256, linha_origem)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_arquivo_sha256_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL arquivo_sha256"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_capital_fkey",
+      "tipo": "f",
+      "definicao": "FOREIGN KEY (capital) REFERENCES ef.dim_capital(codigo)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_check",
+      "tipo": "c",
+      "definicao": "CHECK (((ano = 2026) AND (trimestre = ANY (ARRAY[1, 2]))))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_check1",
+      "tipo": "c",
+      "definicao": "CHECK (((capital IS NULL) OR (capital = uf)))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_check10",
+      "tipo": "c",
+      "definicao": "CHECK ((NOT (formalizada IS DISTINCT FROM\nCASE\n    WHEN ((vd4009 = ANY (ARRAY[8, 9])) AND (v4019 = ANY (ARRAY[1, 2]))) THEN (v4019 = 1)\n    ELSE NULL::boolean\nEND)))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_check2",
+      "tipo": "c",
+      "definicao": "CHECK ((((upa)::text ~ '^[0-9]{9}$'::text) AND ((estrato)::text ~ '^[0-9]{7}$'::text)))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_check3",
+      "tipo": "c",
+      "definicao": "CHECK ((\"left\"((upa)::text, 2) = (uf)::text))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_check4",
+      "tipo": "c",
+      "definicao": "CHECK ((((v1008)::text ~ '^[0-9]{2}$'::text) AND ((v1014)::text ~ '^[0-9]{2}$'::text) AND ((v1016)::text ~ '^[1-5]$'::text) AND ((v2003)::text ~ '^[0-9]{2}$'::text)))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_check5",
+      "tipo": "c",
+      "definicao": "CHECK (((((v1008)::integer >= 1) AND ((v1008)::integer <= 14)) AND (((v2003)::integer >= 1) AND ((v2003)::integer <= 30))))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_check6",
+      "tipo": "c",
+      "definicao": "CHECK ((is_bahia = (uf = 29)))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_check7",
+      "tipo": "c",
+      "definicao": "CHECK ((is_salvador = ((uf = 29) AND COALESCE((capital = 29), false))))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_check8",
+      "tipo": "c",
+      "definicao": "CHECK ((is_empreendedor = (vd4009 = ANY (ARRAY[8, 9]))))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_check9",
+      "tipo": "c",
+      "definicao": "CHECK ((is_empreendedora = ((v2007 = 2) AND (vd4009 = ANY (ARRAY[8, 9])))))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_estrato_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL estrato"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_is_bahia_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL is_bahia"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_is_empreendedor_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL is_empreendedor"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_is_empreendedora_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL is_empreendedora"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_is_salvador_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL is_salvador"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_linha_origem_check",
+      "tipo": "c",
+      "definicao": "CHECK ((linha_origem > 0))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_linha_origem_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL linha_origem"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_pkey",
+      "tipo": "p",
+      "definicao": "PRIMARY KEY (ano, trimestre, upa, v1008, v1014, v1016, v2003)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_trimestre_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL trimestre"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_uf_fkey",
+      "tipo": "f",
+      "definicao": "FOREIGN KEY (uf) REFERENCES ef.dim_uf(codigo)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_uf_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL uf"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_upa_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL upa"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v1008_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL v1008"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v1014_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL v1014"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v1016_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL v1016"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v1028_check",
+      "tipo": "c",
+      "definicao": "CHECK ((v1028 > (0)::numeric))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v1028_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL v1028"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v2003_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL v2003"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v2007_fkey",
+      "tipo": "f",
+      "definicao": "FOREIGN KEY (v2007) REFERENCES ef.dim_v2007(codigo)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v2007_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL v2007"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v2009_check",
+      "tipo": "c",
+      "definicao": "CHECK (((v2009 >= 14) AND (v2009 <= 130)))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v2009_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL v2009"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v2010_fkey",
+      "tipo": "f",
+      "definicao": "FOREIGN KEY (v2010) REFERENCES ef.dim_v2010(codigo)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v2010_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL v2010"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v4018_fkey",
+      "tipo": "f",
+      "definicao": "FOREIGN KEY (v4018) REFERENCES ef.dim_v4018(codigo)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_v4019_fkey",
+      "tipo": "f",
+      "definicao": "FOREIGN KEY (v4019) REFERENCES ef.dim_v4019(codigo)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_vd3004_fkey",
+      "tipo": "f",
+      "definicao": "FOREIGN KEY (vd3004) REFERENCES ef.dim_vd3004(codigo)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_vd3004_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL vd3004"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_vd4002_check",
+      "tipo": "c",
+      "definicao": "CHECK ((vd4002 = 1))"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_vd4002_fkey",
+      "tipo": "f",
+      "definicao": "FOREIGN KEY (vd4002) REFERENCES ef.dim_vd4002(codigo)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_vd4002_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL vd4002"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_vd4009_fkey",
+      "tipo": "f",
+      "definicao": "FOREIGN KEY (vd4009) REFERENCES ef.dim_vd4009(codigo)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_vd4009_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL vd4009"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_vd4010_fkey",
+      "tipo": "f",
+      "definicao": "FOREIGN KEY (vd4010) REFERENCES ef.dim_vd4010(codigo)"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_vd4010_not_null",
+      "tipo": "n",
+      "definicao": "NOT NULL vd4010"
+    },
+    {
+      "tabela": "observacao",
+      "nome": "observacao_vd4016_check",
+      "tipo": "c",
+      "definicao": "CHECK ((vd4016 >= (0)::numeric))"
+    }
+  ],
+  "views": [
+    "v_perfil_empreendedores",
+    "v_recortes",
+    "v_resumo_geografico"
+  ],
+  "bytes_esquema": 8978432,
+  "contagens_trimestrais": [
+    [
+      2026,
+      1,
+      10062
+    ],
+    [
+      2026,
+      2,
+      10644
+    ]
+  ],
+  "duplicatas": 0,
+  "inconsistencias": 0
+}

@@ -149,7 +149,7 @@ def run(project,out,scratch):
     (out/'dicionario_tratado.json').write_text(json.dumps(data_dict,ensure_ascii=False,indent=2),encoding='utf-8')
     docs=[project/'dados_brutos/input_PNADC_trimestral.txt',*sorted((project/'documentação').glob('*.xls'))]
     gerados={'dicionario_tratado.json','fontes.csv','pnadc_ocupados_2026.csv','pnadc_ocupados_2026.parquet','referencias.csv','rejeitados.csv'}
-    audit=dict(versao='fase2-bahia-v1',recorte_geografico={'uf':29,'descricao':'Toda a Bahia, incluindo Salvador','regra_salvador':'UF=29 AND Capital=29'},estatisticas=stats,fontes=sources,documentacao=[dict(arquivo=p.name,sha256=sha(p)) for p in docs],nulos=dict(nulls),indicadores_verdadeiros=dict(flags),total=sum(s['tratados'] for s in stats),nuvem='Pendente: serviço Aiven ainda não criado',artefatos={p.name:dict(bytes=p.stat().st_size,sha256=sha(p)) for p in out.glob('*') if p.is_file() and p.name in gerados})
+    audit=dict(versao='fase2-bahia-v1',recorte_geografico={'uf':29,'descricao':'Toda a Bahia, incluindo Salvador','regra_salvador':'UF=29 AND Capital=29'},estatisticas=stats,fontes=sources,documentacao=[dict(arquivo=p.name,sha256=sha(p)) for p in docs],nulos=dict(nulls),indicadores_verdadeiros=dict(flags),total=sum(s['tratados'] for s in stats),nuvem='O ETL não realiza carga; consulte evidencias/carga_nuvem.json para a comprovação da carga no Aiven',artefatos={p.name:dict(bytes=p.stat().st_size,sha256=sha(p)) for p in out.glob('*') if p.is_file() and p.name in gerados})
     (out/'auditoria.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2),encoding='utf-8');db.close()
 
 if __name__=='__main__':

@@ -1,13 +1,14 @@
 """Inventário do esquema e validação da carga no PostgreSQL configurado."""
-import json,os
+import json,os,argparse
 from pathlib import Path
 from datetime import datetime,timezone
 import psycopg
 
 root=Path(__file__).resolve().parents[1]
 audit=json.loads((root/'dados/auditoria.json').read_text(encoding='utf-8'))
-params=json.loads((root/'config/postgres.local.json').read_text(encoding='utf-8'))
-conn=psycopg.connect(os.environ['PGCONNECTION']) if os.environ.get('PGCONNECTION') else psycopg.connect(**params)
+parser=argparse.ArgumentParser();parser.add_argument('--config',type=Path);parser.add_argument('--nuvem',action='store_true');args=parser.parse_args()
+params=json.loads((args.config or root/'config/postgres.local.json').read_text(encoding='utf-8'))
+conn=psycopg.connect(os.environ['PGCONNECTION']) if os.environ.get('PGCONNECTION') and args.config is None else psycopg.connect(**params)
 with conn,conn.cursor() as q:
     q.execute("SELECT table_name FROM information_schema.tables WHERE table_schema='ef' AND table_type='BASE TABLE' ORDER BY table_name")
     names=[r[0] for r in q.fetchall()];counts={}
@@ -24,6 +25,6 @@ with conn,conn.cursor() as q:
     q.execute('SELECT count(*) FROM ef.observacao WHERE uf<>29 OR vd4002<>1 OR v1028<=0 OR v2009<14 OR is_empreendedor IS DISTINCT FROM (vd4009 IN (8,9)) OR is_empreendedora IS DISTINCT FROM (v2007=2 AND vd4009 IN (8,9))');invalid=q.fetchone()[0];assert invalid==0
     q.execute('SELECT current_database(),inet_server_addr()::text,inet_server_port()');database,address,port=q.fetchone()
     q.execute("SELECT viewname FROM pg_views WHERE schemaname='ef' ORDER BY viewname");views=[r[0] for r in q.fetchall()]
-record=dict(banco=database,endereco=address,porta=port,esquema='ef',verificado_em_utc=datetime.now(timezone.utc).isoformat(),tabelas=counts,campos=columns,restricoes=constraints,views=views,bytes_esquema=schema_bytes,contagens_trimestrais=periods,duplicatas=duplicates,inconsistencias=invalid)
-(root/'evidencias/estrutura_postgres.json').write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding='utf-8')
+record=dict(ambiente='nuvem' if args.nuvem else 'local',banco=database,endereco=address,porta=port,esquema='ef',verificado_em_utc=datetime.now(timezone.utc).isoformat(),tabelas=counts,campos=columns,restricoes=constraints,views=views,bytes_esquema=schema_bytes,contagens_trimestrais=periods,duplicatas=duplicates,inconsistencias=invalid)
+(root/('evidencias/estrutura_nuvem.json' if args.nuvem else 'evidencias/estrutura_postgres.json')).write_text(json.dumps(record,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps(dict(banco=database,tabelas=counts,views=views,bytes_esquema=schema_bytes,duplicatas=duplicates,inconsistencias=invalid),ensure_ascii=False,indent=2))

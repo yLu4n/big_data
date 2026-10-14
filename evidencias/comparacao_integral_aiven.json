@@ -1,0 +1,25 @@
+{
+  "ambiente": "Aiven",
+  "verificado_em_utc": "2026-10-14T03:58:58.398768+00:00",
+  "total": 20706,
+  "comparacao": "Todas as células iguais ao Parquet tratado",
+  "recorte_geografico": [
+    [
+      29,
+      29,
+      3382
+    ],
+    [
+      29,
+      null,
+      17324
+    ]
+  ],
+  "tls": {
+    "ssl": true,
+    "version": "TLSv1.3",
+    "cipher": "TLS_AES_256_GCM_SHA384",
+    "sslmode": "require",
+    "ca_fornecido": false
+  }
+}

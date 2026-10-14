@@ -1,6 +1,6 @@
 # Empreendedorismo Feminino - Bahia e Salvador
 
-Versão `fase2-bahia-v1`, atualizada em 14/10/2026. A base atual contém **somente pessoas ocupadas da Bahia (`UF=29`)**, incluindo Salvador. São **20.706 observações pessoa-trimestre**, com **3.382 observações de Salvador (`Capital=29`)**. Ambos os sexos e todas as posições na ocupação permanecem; os indicadores identificam empreendedores e empreendedoras.
+Base `fase2-bahia-v1` / entrega `fase2-bahia-aiven-v1`, atualizada em 14/10/2026. A base atual contém **somente pessoas ocupadas da Bahia (`UF=29`)**, incluindo Salvador. São **20.706 observações pessoa-trimestre**, com **3.382 observações de Salvador (`Capital=29`)**. Ambos os sexos e todas as posições na ocupação permanecem; os indicadores identificam empreendedores e empreendedoras.
 
 | Período | Bahia, incluindo Salvador | Salvador, subconjunto |
 |---|---:|---:|
@@ -14,7 +14,7 @@ Salvador já está incluído no total da Bahia. Os recortes não devem ser somad
 
 1. **Base tratada:** Parquet e CSV, com 21 campos de origem, 5 indicadores e 2 campos de rastreabilidade. A auditoria registra hashes, contagens, exclusões geográficas, nulos e decisões. A versão nacional anterior foi substituída na versão atual do projeto pelo recorte da Bahia.
 2. **Processo:** ETL, exportação, carregador PostgreSQL, verificadores, SQL e documentação disponíveis em https://github.com/yLu4n/big_data. O Parquet é versionado; o CSV pode ser reconstruído a partir dele.
-3. **Banco:** `localhost:5432/big_data`, esquema `ef`, com 20.706 observações, 2 fontes, 10 dimensões e 47 códigos. A estrutura, os relacionamentos, campos, tipos e contagens estão em `evidencias/estrutura_postgres.json`. O backup do esquema acompanha o ZIP. A conexão fornecida é local; a hospedagem Aiven permanece pendente.
+3. **Banco em nuvem concluído:** serviço PostgreSQL do Aiven, banco `defaultdb`, esquema `ef`, com 20.706 observações, 2 fontes, 10 dimensões, 47 códigos e 3 views. A estrutura, campos, tipos, relacionamentos e contagens estão em `evidencias/estrutura_nuvem.json`. Todas as células do banco foram comparadas ao Parquet tratado e coincidiram. A cópia local `big_data` permanece disponível.
 
 ## Origem e transformações
 
@@ -39,7 +39,43 @@ python -m venv .venv
 
 `--projeto` recebe a pasta que contém `dados_brutos` e `documentação`. O ETL agora aplica `UF=29` automaticamente; não é necessário fornecer um filtro adicional. A saída mantém os nomes `pnadc_ocupados_2026.csv` e `pnadc_ocupados_2026.parquet`, mas seu conteúdo é exclusivamente da Bahia. Ao executar em uma pasta antiga, o ETL substitui esses arquivos; backups e relatórios antigos precisam ser atualizados separadamente.
 
-## Conexão e carga
+## Conexão Aiven - dados disponíveis em nuvem
+
+A conexão está configurada em `config/postgres.aiven.json`, sem senha:
+
+- Host: `pg-3746e955-bigdatalkb.f.aivencloud.com`
+- Porta: `22835`
+- Banco: `defaultdb`
+- Usuário: `avnadmin`
+- Esquema: `ef`
+- SSL: `require`, conforme os parâmetros fornecidos.
+
+A carga foi realizada e validada em 14/10/2026. A conexão confirmou TLS 1.3. Nenhum certificado CA foi fornecido: `require` criptografa a conexão, mas esta configuração não faz a validação de identidade do servidor com um CA. Caso o CA seja fornecido depois, o carregador também permite `verify-full` com `sslrootcert`.
+
+Para uma recarga intencional, a partir da pasta do projeto:
+
+```powershell
+./scripts/conectar_e_carregar_aiven.ps1 -Substituir
+```
+
+O script solicita a senha de avnadmin e não a grava em arquivo. Para um banco ainda vazio, omita `-Substituir`. Alternativamente, com `PGPASSWORD` configurada na sessão:
+
+```powershell
+& ./.venv/Scripts/python.exe scripts/carregar_postgres.py --config config/postgres.aiven.json --substituir
+& ./.venv/Scripts/python.exe scripts/verificar_postgres.py --config config/postgres.aiven.json --nuvem
+```
+
+A opção `--config` explícita tem precedência sobre `PGCONNECTION`. Sem `--config`, essa variável pode fornecer a conexão; se estiver ausente, usa-se o perfil local. Evidências de nuvem são gravadas em arquivos separados das evidências locais. A carga continua transacional, protegida por `--substituir` e por `CHECK (uf=29)`.
+
+No pgAdmin ou em outro cliente PostgreSQL, utilize os campos do arquivo Aiven, informe a senha e configure SSL Require. As tabelas estão em `Schemas > ef > Tables`. Consulta de conferência:
+
+```sql
+SELECT ano,trimestre,count(*) FROM ef.observacao GROUP BY ano,trimestre;
+SELECT count(*) FROM ef.observacao WHERE capital=29;
+SELECT * FROM ef.v_resumo_geografico ORDER BY ano,trimestre,recorte,sexo;
+```
+
+## Conexão local e carga
 
 A configuração sem senha está em `config/postgres.local.json`: host localhost, porta 5432, banco big_data e usuário postgres. Para recarregar o esquema `ef` já existente, execute:
 
@@ -56,7 +92,7 @@ O script solicita a senha. Como alternativa, configure `PGPASSWORD` na sessão e
 
 A substituição é transacional e limitada às tabelas do esquema `ef`. O carregador esvazia as tabelas, aplica `sql/04_recorte_bahia.sql`, carrega os dados e valida a contagem. A restrição `CHECK (uf=29)` impede inserir observações de outras UFs. Sem `--substituir`, tabelas já populadas não são recarregadas. As demais tabelas já existentes no banco, incluindo o esquema `empreendedorismo`, não são geridas por esta entrega.
 
-Quando o CSV não estiver disponível no clone, o carregador o reconstrói automaticamente do Parquet. Não grave a senha no código ou no Git. `PGCONNECTION`, quando definida, tem precedência sobre a configuração JSON. O modo de nuvem continua exigindo `sslmode=verify-full`, `sslrootcert` e conexão TLS verificada.
+Quando o CSV não estiver disponível no clone, o carregador o reconstrói automaticamente do Parquet. Não grave a senha no código ou no Git. Sem `--config`, `PGCONNECTION` pode fornecer a conexão. O perfil Aiven é selecionado explicitamente pelo iniciador de nuvem; os modos de nuvem permitidos são `require` e `verify-full` com certificado CA.
 
 ## Modelo, tipos e regras
 
@@ -89,4 +125,6 @@ SELECT uf,capital,count(*) FROM ef.observacao GROUP BY uf,capital;
 
 `verificacao_artefatos.json` confere hashes, tipos, igualdade integral CSV/Parquet, chaves, indicadores e UF. `comparacao_recorte.json` confirma a igualdade integral com o recorte UF=29 da versão anterior. `carga_local.json`, `estrutura_postgres.json`, `validacao_local.txt`, `resumo_local.csv` e `restauracao_backup.txt` comprovam a carga e a restauração da versão Bahia. `auditoria.json` identifica entradas e saídas; o manifesto do pacote inclui o backup e o relatório.
 
-O ZIP inclui CSV, Parquet, backup, relatório, scripts, SQL e evidências. O Git versiona o Parquet e os metadados; exclui CSV volumoso, backup, senha, ambiente virtual e temporários. `.gitattributes` mantém os bytes necessários à conferência de hashes. O relatório conserva as seis páginas solicitadas, sem os tópicos e a página 7 removidos anteriormente.
+As evidências `carga_nuvem.json`, `estrutura_nuvem.json`, `validacao_nuvem.txt`, `resumo_nuvem.csv` e `comparacao_integral_aiven.json` comprovam a carga no Aiven, TLS e igualdade integral com a base tratada.
+
+O ZIP inclui CSV, Parquet, backup local (`empreendedorismo_feminino.dump`), backup do Aiven (`empreendedorismo_feminino_aiven.dump`), relatório, scripts, SQL e evidências. O Git versiona o Parquet e os metadados; exclui CSV volumoso, backup, senha, ambiente virtual e temporários. `.gitattributes` mantém os bytes necessários à conferência de hashes. O relatório conserva as seis páginas solicitadas, sem os tópicos e a página 7 removidos anteriormente.
