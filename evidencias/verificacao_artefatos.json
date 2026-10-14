@@ -1,0 +1,12 @@
+{
+  "total": 464457,
+  "colunas": 28,
+  "por_trimestre": {
+    "1": 228357,
+    "2": 236100
+  },
+  "hashes": "OK",
+  "csv_parquet": "Todas as células iguais",
+  "unicidade": "OK",
+  "indicadores": "OK"
+}

@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+work/
+.env
+*.pem
+*.key
+dados/pnadc_ocupados_2026.csv
+dados/*.tmp
+dados/*.dump
+manifesto_sha256.txt

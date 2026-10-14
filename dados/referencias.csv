@@ -1,0 +1,100 @@
+variavel,codigo,rotulo
+uf,11,Rondônia
+uf,12,Acre
+uf,13,Amazonas
+uf,14,Roraima
+uf,15,Pará
+uf,16,Amapá
+uf,17,Tocantins
+uf,21,Maranhão
+uf,22,Piauí
+uf,23,Ceará
+uf,24,Rio Grande do Norte
+uf,25,Paraíba
+uf,26,Pernambuco
+uf,27,Alagoas
+uf,28,Sergipe
+uf,29,Bahia
+uf,31,Minas Gerais
+uf,32,Espírito Santo
+uf,33,Rio de Janeiro
+uf,35,São Paulo
+uf,41,Paraná
+uf,42,Santa Catarina
+uf,43,Rio Grande do Sul
+uf,50,Mato Grosso do Sul
+uf,51,Mato Grosso
+uf,52,Goiás
+uf,53,Distrito Federal
+capital,11,Município de Porto Velho (RO)
+capital,12,Município de Rio Branco (AC)
+capital,13,Município de Manaus (AM)
+capital,14,Município de Boa Vista (RR)
+capital,15,Município de Belém (PA)
+capital,16,Município de Macapá (AP)
+capital,17,Município de Palmas (TO)
+capital,21,Município de São Luís (MA)
+capital,22,Município de Teresina (PI)
+capital,23,Município de Fortaleza (CE)
+capital,24,Município de Natal (RN)
+capital,25,Município de João Pessoa (PB)
+capital,26,Município de Recife (PE)
+capital,27,Município de Maceió (AL)
+capital,28,Município de Aracaju (SE)
+capital,29,Município de Salvador (BA)
+capital,31,Município de Belo Horizonte (MG)
+capital,32,Município de Vitória (ES)
+capital,33,Município de Rio de Janeiro (RJ)
+capital,35,Município de São Paulo (SP)
+capital,41,Município de Curitiba (PR)
+capital,42,Município de Florianópolis (SC)
+capital,43,Município de Porto Alegre (RS)
+capital,50,Município de Campo Grande (MS)
+capital,51,Município de Cuiabá (MT)
+capital,52,Município de Goiânia (GO)
+capital,53,Município de Brasília (DF)
+v2007,1,Homem
+v2007,2,Mulher
+v2010,1,Branca
+v2010,2,Preta
+v2010,3,Amarela
+v2010,4,Parda
+v2010,5,Indígena
+v2010,9,Ignorado
+v4018,1,1 a 5 pessoas
+v4018,2,6 a 10 pessoas
+v4018,3,11 a 50 pessoas
+v4018,4,51 ou mais pessoas
+v4019,1,Sim
+v4019,2,Não
+vd3004,1,Sem instrução e menos de 1 ano de estudo
+vd3004,2,Fundamental incompleto ou equivalente
+vd3004,3,Fundamental completo ou equivalente
+vd3004,4,Médio incompleto ou equivalente
+vd3004,5,Médio completo ou equivalente
+vd3004,6,Superior incompleto ou equivalente
+vd3004,7,Superior completo
+vd4002,1,Pessoas ocupadas
+vd4002,2,Pessoas desocupadas
+vd4009,1,Empregado no setor privado com carteira de trabalho assinada
+vd4009,2,Empregado no setor privado sem carteira de trabalho assinada
+vd4009,3,Trabalhador doméstico com carteira de trabalho assinada
+vd4009,4,Trabalhador doméstico sem carteira de trabalho assinada
+vd4009,5,Empregado no setor público com carteira de trabalho assinada
+vd4009,6,Empregado no setor público sem carteira de trabalho assinada
+vd4009,7,Militar e servidor estatutário
+vd4009,8,Empregador
+vd4009,9,Conta-própria
+vd4009,10,Trabalhador familiar auxiliar
+vd4010,1,"Agricultura, pecuária, produção florestal, pesca e aquicultura"
+vd4010,2,Indústria geral
+vd4010,3,Construção
+vd4010,4,"Comércio, reparação de veículos automotores e motocicletas"
+vd4010,5,"Transporte, armazenagem e correio"
+vd4010,6,Alojamento e alimentação
+vd4010,7,"Informação, comunicação e atividades financeiras, imobiliárias, profissionais e administrativas"
+vd4010,8,"Administração pública, defesa e seguridade social"
+vd4010,9,"Educação, saúde humana e serviços sociais"
+vd4010,10,Outros Serviços
+vd4010,11,Serviços domésticos
+vd4010,12,Atividades mal definidas

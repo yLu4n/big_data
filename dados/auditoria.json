@@ -1,0 +1,113 @@
+{
+  "versao": "fase2-v1",
+  "estatisticas": [
+    {
+      "arquivo": "PNADC_012026.txt",
+      "larguras": {
+        "3478": 511149
+      },
+      "originais": 511149,
+      "fora_universo": 282792,
+      "ocupados": 228357,
+      "inseridos": 228357,
+      "conflitos_primeiros": 0,
+      "tratados": 228357
+    },
+    {
+      "arquivo": "PNADC_022026.txt",
+      "larguras": {
+        "3478": 521730
+      },
+      "originais": 521730,
+      "ocupados": 236100,
+      "inseridos": 236100,
+      "fora_universo": 285630,
+      "conflitos_primeiros": 0,
+      "tratados": 236100
+    }
+  ],
+  "fontes": [
+    {
+      "arquivo": "PNADC_012026.txt",
+      "sha256": "8406bfc994e69e1334b46396a17d0fd1f5d52948ec952107c8bc4d6f95f6703d",
+      "bytes": 1778798520,
+      "ano": 2026,
+      "trimestre": 1
+    },
+    {
+      "arquivo": "PNADC_022026.txt",
+      "sha256": "03e399334ea304f4d0cc4444702c395ad9b369163c1e760ebc875b48c3a2c80e",
+      "bytes": 1815620400,
+      "ano": 2026,
+      "trimestre": 2
+    }
+  ],
+  "documentacao": [
+    {
+      "arquivo": "input_PNADC_trimestral.txt",
+      "sha256": "6d89c404138d2467ce08db087d433ab0b165d138edc85e2f16e8204a807b51ad"
+    },
+    {
+      "arquivo": "dicionario_PNADC_microdados_trimestral.xls",
+      "sha256": "2e9c576a93a750cf159e31200e273faff39b80fbe498c961e2e810879a1f6b41"
+    },
+    {
+      "arquivo": "Variaveis_PNADC_Trimestral.xls",
+      "sha256": "53b954cfc8b04645b5fde4e8a8fd8d386979c97db90902cbfae6a902677032fa"
+    }
+  ],
+  "nulos": {
+    "capital": 349127,
+    "v4019": 317732,
+    "formalizada": 317732,
+    "v4018": 92868,
+    "vd4016": 9261
+  },
+  "indicadores_verdadeiros": {
+    "is_empreendedor": 146725,
+    "is_empreendedora": 48680,
+    "formalizada": 45452,
+    "is_bahia": 20706,
+    "is_salvador": 3382
+  },
+  "total": 464457,
+  "nuvem": "Pendente: serviço Aiven ainda não criado",
+  "artefatos": {
+    "dicionario_tratado.json": {
+      "bytes": 5253,
+      "sha256": "1527e728976751cc9de953f692be7a6bc685232a1073de012fb458c4f2102ac8"
+    },
+    "empreendedorismo_feminino.dump": {
+      "bytes": 9262269,
+      "sha256": "977109af5a18c1f38196df7524f82328023777c3bf8f713e277bb42bbb983b99"
+    },
+    "fontes.csv": {
+      "bytes": 238,
+      "sha256": "544ac6a2e9d38ede81e37c096eedffbdcd2dbf5f7537110d259482f435bfc055"
+    },
+    "pnadc_ocupados_2026.csv": {
+      "bytes": 82825879,
+      "sha256": "3f67cc920f88a351accd2bb6e416bfc8a1e166bab8c0e7a5581b55fe7ac162f4"
+    },
+    "pnadc_ocupados_2026.parquet": {
+      "bytes": 6504400,
+      "sha256": "1815fed9ecad7026904019b237b5e769c7810a26992327492c56b6362f162a4f"
+    },
+    "referencias.csv": {
+      "bytes": 3399,
+      "sha256": "78713a96deca56dd3e574e8737f92530b4e12bd501756f2c6fadc0a3db06ed92"
+    },
+    "rejeitados.csv": {
+      "bytes": 38,
+      "sha256": "bf30258f1de2dbfbb058de377d24f9896cc9cf1b496c75de28bf8ea172609fa7"
+    }
+  },
+  "versao_entrega": "fase2-v2",
+  "armazenamento_local": {
+    "host": "localhost",
+    "porta": 5432,
+    "banco": "big_data",
+    "esquema": "ef",
+    "total": 464457
+  }
+}

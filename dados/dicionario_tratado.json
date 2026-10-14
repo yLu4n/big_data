@@ -1,0 +1,212 @@
+[
+  {
+    "campo": "ano",
+    "descricao": "Ano de referência",
+    "posicao": 1,
+    "largura": 4,
+    "tipo_sql": "SMALLINT",
+    "nulo": false
+  },
+  {
+    "campo": "trimestre",
+    "descricao": "Trimestre de referência",
+    "posicao": 5,
+    "largura": 1,
+    "tipo_sql": "SMALLINT",
+    "nulo": false
+  },
+  {
+    "campo": "uf",
+    "descricao": "Unidade da Federação",
+    "posicao": 6,
+    "largura": 2,
+    "tipo_sql": "SMALLINT",
+    "nulo": false
+  },
+  {
+    "campo": "capital",
+    "descricao": "Município da Capital",
+    "posicao": 8,
+    "largura": 2,
+    "tipo_sql": "SMALLINT",
+    "nulo": true
+  },
+  {
+    "campo": "upa",
+    "descricao": "Unidade Primária de Amostragem (UPA)",
+    "posicao": 12,
+    "largura": 9,
+    "tipo_sql": "VARCHAR(9)",
+    "nulo": false
+  },
+  {
+    "campo": "estrato",
+    "descricao": "",
+    "posicao": 21,
+    "largura": 7,
+    "tipo_sql": "VARCHAR(7)",
+    "nulo": false
+  },
+  {
+    "campo": "v1008",
+    "descricao": "Número de seleção do domicílio",
+    "posicao": 28,
+    "largura": 2,
+    "tipo_sql": "VARCHAR(2)",
+    "nulo": false
+  },
+  {
+    "campo": "v1014",
+    "descricao": "Painel",
+    "posicao": 30,
+    "largura": 2,
+    "tipo_sql": "VARCHAR(2)",
+    "nulo": false
+  },
+  {
+    "campo": "v1016",
+    "descricao": "Número da entrevista no domicílio",
+    "posicao": 32,
+    "largura": 1,
+    "tipo_sql": "VARCHAR(1)",
+    "nulo": false
+  },
+  {
+    "campo": "v1028",
+    "descricao": "Peso do domicílio e das pessoas",
+    "posicao": 50,
+    "largura": 15,
+    "tipo_sql": "NUMERIC(18,8)",
+    "nulo": false
+  },
+  {
+    "campo": "v2003",
+    "descricao": "Número de ordem",
+    "posicao": 91,
+    "largura": 2,
+    "tipo_sql": "VARCHAR(2)",
+    "nulo": false
+  },
+  {
+    "campo": "v2007",
+    "descricao": "Sexo",
+    "posicao": 95,
+    "largura": 1,
+    "tipo_sql": "SMALLINT",
+    "nulo": false
+  },
+  {
+    "campo": "v2009",
+    "descricao": "Idade do morador na data de referência",
+    "posicao": 104,
+    "largura": 3,
+    "tipo_sql": "SMALLINT",
+    "nulo": false
+  },
+  {
+    "campo": "v2010",
+    "descricao": "Cor ou raça",
+    "posicao": 107,
+    "largura": 1,
+    "tipo_sql": "SMALLINT",
+    "nulo": false
+  },
+  {
+    "campo": "vd3004",
+    "descricao": "Nível de instrução mais elevado alcançado (pessoas de 5 anos ou mais de idade) padronizado para o Ensino fundamental -  SISTEMA DE 9 ANOS",
+    "posicao": 405,
+    "largura": 1,
+    "tipo_sql": "SMALLINT",
+    "nulo": false
+  },
+  {
+    "campo": "vd4002",
+    "descricao": "Condição de ocupação na semana de referência para pessoas de 14 anos ou mais de idade",
+    "posicao": 410,
+    "largura": 1,
+    "tipo_sql": "SMALLINT",
+    "nulo": false
+  },
+  {
+    "campo": "vd4009",
+    "descricao": "Posição na ocupação e categoria do emprego do trabalho principal da semana de referência para pessoas de 14 anos ou mais de idade",
+    "posicao": 417,
+    "largura": 2,
+    "tipo_sql": "SMALLINT",
+    "nulo": false
+  },
+  {
+    "campo": "v4019",
+    "descricao": "Esse negócio/empresa era registrado no Cadastro Nacional da Pessoa Jurídica - CNPJ?",
+    "posicao": 186,
+    "largura": 1,
+    "tipo_sql": "SMALLINT",
+    "nulo": true
+  },
+  {
+    "campo": "v4018",
+    "descricao": "Na semana de ... a ... (semana de referência), contando com ... , quantas pessoas trabalhavam nesse negócio/empresa ?",
+    "posicao": 180,
+    "largura": 1,
+    "tipo_sql": "SMALLINT",
+    "nulo": true
+  },
+  {
+    "campo": "vd4010",
+    "descricao": "Grupamentos de atividade principal do empreendimento do trabalho principal da semana de referência para pessoas de 14 anos ou mais de idade",
+    "posicao": 419,
+    "largura": 2,
+    "tipo_sql": "SMALLINT",
+    "nulo": false
+  },
+  {
+    "campo": "vd4016",
+    "descricao": "Rendimento mensal habitual do trabalho principal para pessoas de 14 anos ou mais de idade (apenas para pessoas que receberam em dinheiro, produtos ou mercadorias no trabalho principal)",
+    "posicao": 427,
+    "largura": 8,
+    "tipo_sql": "NUMERIC(12,2)",
+    "nulo": true
+  },
+  {
+    "campo": "is_bahia",
+    "descricao": "Indicador derivado conforme levantamento",
+    "tipo_sql": "BOOLEAN",
+    "nulo": false
+  },
+  {
+    "campo": "is_salvador",
+    "descricao": "Indicador derivado conforme levantamento",
+    "tipo_sql": "BOOLEAN",
+    "nulo": false
+  },
+  {
+    "campo": "is_empreendedor",
+    "descricao": "Indicador derivado conforme levantamento",
+    "tipo_sql": "BOOLEAN",
+    "nulo": false
+  },
+  {
+    "campo": "is_empreendedora",
+    "descricao": "Indicador derivado conforme levantamento",
+    "tipo_sql": "BOOLEAN",
+    "nulo": false
+  },
+  {
+    "campo": "formalizada",
+    "descricao": "Indicador derivado conforme levantamento",
+    "tipo_sql": "BOOLEAN",
+    "nulo": true
+  },
+  {
+    "campo": "arquivo_sha256",
+    "descricao": "SHA-256 do TXT original",
+    "tipo_sql": "CHAR(64)",
+    "nulo": false
+  },
+  {
+    "campo": "linha_origem",
+    "descricao": "Linha original, iniciada em 1",
+    "tipo_sql": "BIGINT",
+    "nulo": false
+  }
+]
