@@ -1,0 +1,9 @@
+{
+  "url": "https://github.com/yLu4n/big_data",
+  "branch": "main",
+  "commit_inicial_entrega": "aedef9fe1669a2769aebd85df9f0aa3408d55b89",
+  "publicado": true,
+  "confirmado_em_utc": "2026-10-14T02:51:56.128118+00:00",
+  "arquivos_versionados": "Código, configuração sem senha, SQL, relatório, metadados, evidências e Parquet",
+  "arquivos_no_zip": "Também inclui CSV completo e backup PostgreSQL"
+}

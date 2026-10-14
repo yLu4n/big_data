@@ -7,7 +7,7 @@ Entrega produzida a partir dos arquivos fornecidos, em 13/10/2026. A base `fase2
 ## Situação dos entregáveis
 
 1. **Base tratada concluída:** CSV e Parquet com 21 campos de origem, 5 indicadores e 2 campos de rastreabilidade.
-2. **Processo concluído e documentado:** scripts Python, SQL, dicionário, auditoria e evidências. Repositório da equipe: https://github.com/yLu4n/big_data. O Parquet compacto acompanha o código; o CSV pode ser reconstruído automaticamente na carga.
+2. **Processo concluído e documentado:** scripts Python, SQL, dicionário, auditoria e evidências. Código, documentação e Parquet publicados em https://github.com/yLu4n/big_data, branch `main`. O Parquet compacto acompanha o código; o CSV pode ser reconstruído automaticamente na carga.
 3. **Banco PostgreSQL carregado em `localhost:5432/big_data`, esquema `ef`:** 464.457 observações, 2 fontes, 10 dimensões e 99 códigos. Estrutura, chaves, restrições e views validadas; backup do esquema disponível. **Hospedagem em nuvem pendente:** o usuário informou que ainda não existe serviço Aiven. A validação local não comprova armazenamento em nuvem.
 
 ## Arquivos
@@ -76,9 +76,9 @@ pg_restore --no-owner --no-acl --dbname=nome_do_banco dados/empreendedorismo_fem
 
 Use o carregador para uma futura conexão Aiven como caminho preferencial, pois ele aplica a exigência de TLS e gera as evidências. O endereço `localhost:5432/big_data` é um banco local e não comprova hospedagem em nuvem. Não há serviço ou comprovação Aiven nesta entrega.
 
-## Publicar o código no repositório da equipe
+## Código publicado no repositório da equipe
 
-Copie esta pasta para o repositório autorizado da equipe e versione README, relatório, scripts, requirements, SQL, dicionário, auditoria e evidências sem credenciais. O `.gitignore` exclui o CSV volumoso e o backup; o Parquet de 6,50 MB e os pequenos CSV de referência são versionados. Ao clonar, o carregador reconstrói automaticamente o CSV da base a partir do Parquet, caso o CSV esteja ausente. O backup e o CSV completos acompanham o ZIP. A evidência de publicação, quando concluída, encontra-se em `evidencias/repositorio.json`.
+O repositório contém README, relatório, scripts, requirements, configuração sem senha, SQL, dicionário, auditoria, evidências e Parquet. A configuração `.gitattributes` preserva os bytes e hashes dos arquivos ao clonar. O `.gitignore` exclui o CSV volumoso e o backup; o Parquet de 6,50 MB e os pequenos CSV de referência são versionados. Ao clonar, o carregador reconstrói automaticamente o CSV da base a partir do Parquet, caso o CSV esteja ausente. O backup e o CSV completos acompanham o ZIP. A evidência de publicação encontra-se em `evidencias/repositorio.json`.
 
 ## Referências usadas
 
