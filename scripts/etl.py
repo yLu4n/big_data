@@ -145,7 +145,8 @@ def run(project,out,scratch):
     data_dict += [dict(campo='arquivo_sha256',descricao='SHA-256 do TXT original',tipo_sql='CHAR(64)',nulo=False),dict(campo='linha_origem',descricao='Linha original, iniciada em 1',tipo_sql='BIGINT',nulo=False)]
     (out/'dicionario_tratado.json').write_text(json.dumps(data_dict,ensure_ascii=False,indent=2),encoding='utf-8')
     docs=[project/'dados_brutos/input_PNADC_trimestral.txt',*sorted((project/'documentação').glob('*.xls'))]
-    audit=dict(versao='fase2-v1',estatisticas=stats,fontes=sources,documentacao=[dict(arquivo=p.name,sha256=sha(p)) for p in docs],nulos=dict(nulls),indicadores_verdadeiros=dict(flags),total=sum(s['tratados'] for s in stats),nuvem='Pendente: serviço Aiven ainda não criado',artefatos={p.name:dict(bytes=p.stat().st_size,sha256=sha(p)) for p in out.glob('*') if p.is_file() and p.name!='auditoria.json'})
+    gerados={'dicionario_tratado.json','fontes.csv','pnadc_ocupados_2026.csv','pnadc_ocupados_2026.parquet','referencias.csv','rejeitados.csv'}
+    audit=dict(versao='fase2-v1',estatisticas=stats,fontes=sources,documentacao=[dict(arquivo=p.name,sha256=sha(p)) for p in docs],nulos=dict(nulls),indicadores_verdadeiros=dict(flags),total=sum(s['tratados'] for s in stats),nuvem='Pendente: serviço Aiven ainda não criado',artefatos={p.name:dict(bytes=p.stat().st_size,sha256=sha(p)) for p in out.glob('*') if p.is_file() and p.name in gerados})
     (out/'auditoria.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2),encoding='utf-8');db.close()
 
 if __name__=='__main__':
