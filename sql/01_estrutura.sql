@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS ef.observacao (
  PRIMARY KEY (ano,trimestre,upa,v1008,v1014,v1016,v2003),
  UNIQUE (arquivo_sha256,linha_origem),
  CHECK (ano=2026 AND trimestre IN (1,2)),
+ CONSTRAINT ck_recorte_bahia CHECK (uf=29),
  CHECK (vd4002=1),
  CHECK (v2009 BETWEEN 14 AND 130),
  CHECK (v1028>0),

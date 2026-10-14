@@ -1,58 +1,6 @@
 variavel,codigo,rotulo
-uf,11,Rondônia
-uf,12,Acre
-uf,13,Amazonas
-uf,14,Roraima
-uf,15,Pará
-uf,16,Amapá
-uf,17,Tocantins
-uf,21,Maranhão
-uf,22,Piauí
-uf,23,Ceará
-uf,24,Rio Grande do Norte
-uf,25,Paraíba
-uf,26,Pernambuco
-uf,27,Alagoas
-uf,28,Sergipe
 uf,29,Bahia
-uf,31,Minas Gerais
-uf,32,Espírito Santo
-uf,33,Rio de Janeiro
-uf,35,São Paulo
-uf,41,Paraná
-uf,42,Santa Catarina
-uf,43,Rio Grande do Sul
-uf,50,Mato Grosso do Sul
-uf,51,Mato Grosso
-uf,52,Goiás
-uf,53,Distrito Federal
-capital,11,Município de Porto Velho (RO)
-capital,12,Município de Rio Branco (AC)
-capital,13,Município de Manaus (AM)
-capital,14,Município de Boa Vista (RR)
-capital,15,Município de Belém (PA)
-capital,16,Município de Macapá (AP)
-capital,17,Município de Palmas (TO)
-capital,21,Município de São Luís (MA)
-capital,22,Município de Teresina (PI)
-capital,23,Município de Fortaleza (CE)
-capital,24,Município de Natal (RN)
-capital,25,Município de João Pessoa (PB)
-capital,26,Município de Recife (PE)
-capital,27,Município de Maceió (AL)
-capital,28,Município de Aracaju (SE)
 capital,29,Município de Salvador (BA)
-capital,31,Município de Belo Horizonte (MG)
-capital,32,Município de Vitória (ES)
-capital,33,Município de Rio de Janeiro (RJ)
-capital,35,Município de São Paulo (SP)
-capital,41,Município de Curitiba (PR)
-capital,42,Município de Florianópolis (SC)
-capital,43,Município de Porto Alegre (RS)
-capital,50,Município de Campo Grande (MS)
-capital,51,Município de Cuiabá (MT)
-capital,52,Município de Goiânia (GO)
-capital,53,Município de Brasília (DF)
 v2007,1,Homem
 v2007,2,Mulher
 v2010,1,Branca

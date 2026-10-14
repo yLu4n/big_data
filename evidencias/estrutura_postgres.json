@@ -3,10 +3,10 @@
   "endereco": "::1/128",
   "porta": 5432,
   "esquema": "ef",
-  "verificado_em_utc": "2026-10-14T02:48:13.824214+00:00",
+  "verificado_em_utc": "2026-10-14T03:30:13.742514+00:00",
   "tabelas": {
-    "dim_capital": 27,
-    "dim_uf": 27,
+    "dim_capital": 1,
+    "dim_uf": 1,
     "dim_v2007": 2,
     "dim_v2010": 6,
     "dim_v4018": 4,
@@ -16,7 +16,7 @@
     "dim_vd4009": 10,
     "dim_vd4010": 12,
     "fonte": 2,
-    "observacao": 464457
+    "observacao": 20706
   },
   "campos": [
     {
@@ -1262,6 +1262,12 @@
     },
     {
       "tabela": "observacao",
+      "nome": "ck_recorte_bahia",
+      "tipo": "c",
+      "definicao": "CHECK ((uf = 29))"
+    },
+    {
+      "tabela": "observacao",
       "nome": "observacao_ano_not_null",
       "tipo": "n",
       "definicao": "NOT NULL ano"
@@ -1578,17 +1584,17 @@
     "v_recortes",
     "v_resumo_geografico"
   ],
-  "bytes_esquema": 182509568,
+  "bytes_esquema": 8593408,
   "contagens_trimestrais": [
     [
       2026,
       1,
-      228357
+      10062
     ],
     [
       2026,
       2,
-      236100
+      10644
     ]
   ],
   "duplicatas": 0,

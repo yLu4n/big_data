@@ -1,12 +1,11 @@
 CREATE OR REPLACE VIEW ef.v_recortes AS
  SELECT o.*,r.recorte FROM ef.observacao o
  CROSS JOIN LATERAL (
-   SELECT 'Brasil'::text AS recorte
-   UNION ALL SELECT 'Bahia' WHERE o.is_bahia
+   SELECT 'Bahia'::text AS recorte WHERE o.is_bahia
    UNION ALL SELECT 'Salvador' WHERE o.is_salvador
  ) r;
 
--- Brasil, Bahia e Salvador se sobrepõem: nunca somar os recortes.
+-- Bahia e Salvador se sobrepõem: nunca somar os recortes.
 CREATE OR REPLACE VIEW ef.v_resumo_geografico AS
  SELECT ano,trimestre,recorte,v2007 AS sexo,
  count(*) AS observacoes_amostra,

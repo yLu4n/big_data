@@ -29,6 +29,7 @@ def verify(root):
                 for col,value in row.items():
                     expected='' if value is None else str(value).lower() if isinstance(value,bool) else str(value)
                     assert original[col]==expected,(total,col)
+                assert row['uf']==29
                 assert row['vd4002']==1 and row['v1028']>0 and row['v2009']>=14
                 assert row['is_empreendedor']==(row['vd4009'] in (8,9))
                 assert row['is_empreendedora']==(row['v2007']==2 and row['vd4009'] in (8,9))
@@ -38,8 +39,9 @@ def verify(root):
                 assert key not in keys;keys.add(key)
                 total+=1;by_quarter[row['trimestre']]=by_quarter.get(row['trimestre'],0)+1
         assert next(reader,None) is None
-    assert by_quarter=={1:228357,2:236100}
-    result=dict(total=total,colunas=28,por_trimestre=by_quarter,hashes='OK',csv_parquet='Todas as células iguais',unicidade='OK',indicadores='OK')
+    expected={f['trimestre']:next(s['tratados'] for s in audit['estatisticas'] if s['arquivo']==f['arquivo']) for f in audit['fontes']}
+    assert by_quarter==expected and total==audit['total']
+    result=dict(total=total,colunas=28,por_trimestre=by_quarter,hashes='OK',csv_parquet='Todas as células iguais',unicidade='OK',indicadores='OK',recorte_uf_29='OK')
     evidence=root/'evidencias';evidence.mkdir(exist_ok=True)
     (evidence/'verificacao_artefatos.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps(result,ensure_ascii=False,indent=2))

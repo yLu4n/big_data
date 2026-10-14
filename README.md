@@ -1,93 +1,92 @@
-# Empreendedorismo Feminino no Brasil - Entrega técnica fase 2
+# Empreendedorismo Feminino - Bahia e Salvador
 
-Equipe indicada no levantamento: Kauã Kley, Luan Victor e Beatriz Costa.
+Versão `fase2-bahia-v1`, atualizada em 14/10/2026. A base atual contém **somente pessoas ocupadas da Bahia (`UF=29`)**, incluindo Salvador. São **20.706 observações pessoa-trimestre**, com **3.382 observações de Salvador (`Capital=29`)**. Ambos os sexos e todas as posições na ocupação permanecem; os indicadores identificam empreendedores e empreendedoras.
 
-Entrega produzida a partir dos arquivos fornecidos, em 13/10/2026. A base `fase2-v1`, com a entrega de conexão revisada `fase2-v2`, reúne 464.457 observações de pessoas ocupadas: 228.357 no 1º trimestre e 236.100 no 2º trimestre de 2026. São observações de pessoa por trimestre, não pessoas distintas no semestre.
+| Período | Bahia, incluindo Salvador | Salvador, subconjunto |
+|---|---:|---:|
+| 1º trimestre de 2026 | 10.062 | 1.645 |
+| 2º trimestre de 2026 | 10.644 | 1.737 |
+| Total de observações | 20.706 | 3.382 |
 
-## Situação dos entregáveis
+Salvador já está incluído no total da Bahia. Os recortes não devem ser somados. Pessoas podem reaparecer nos dois períodos; os totais não correspondem a pessoas distintas no semestre.
 
-1. **Base tratada concluída:** CSV e Parquet com 21 campos de origem, 5 indicadores e 2 campos de rastreabilidade.
-2. **Processo concluído e documentado:** scripts Python, SQL, dicionário, auditoria e evidências. Código, documentação e Parquet publicados em https://github.com/yLu4n/big_data, branch `main`. O Parquet compacto acompanha o código; o CSV pode ser reconstruído automaticamente na carga.
-3. **Banco PostgreSQL carregado em `localhost:5432/big_data`, esquema `ef`:** 464.457 observações, 2 fontes, 10 dimensões e 99 códigos. Estrutura, chaves, restrições e views validadas; backup do esquema disponível. **Hospedagem em nuvem pendente:** o usuário informou que ainda não existe serviço Aiven. A validação local não comprova armazenamento em nuvem.
+## Entregáveis
 
-## Arquivos
+1. **Base tratada:** Parquet e CSV, com 21 campos de origem, 5 indicadores e 2 campos de rastreabilidade. A auditoria registra hashes, contagens, exclusões geográficas, nulos e decisões. A versão nacional anterior foi substituída na versão atual do projeto pelo recorte da Bahia.
+2. **Processo:** ETL, exportação, carregador PostgreSQL, verificadores, SQL e documentação disponíveis em https://github.com/yLu4n/big_data. O Parquet é versionado; o CSV pode ser reconstruído a partir dele.
+3. **Banco:** `localhost:5432/big_data`, esquema `ef`, com 20.706 observações, 2 fontes, 10 dimensões e 47 códigos. A estrutura, os relacionamentos, campos, tipos e contagens estão em `evidencias/estrutura_postgres.json`. O backup do esquema acompanha o ZIP. A conexão fornecida é local; a hospedagem Aiven permanece pendente.
 
-- `Relatorio_Tecnico_Fase_2.pdf`: relatório para apresentação da atividade.
-- `dados/pnadc_ocupados_2026.parquet`: base tipada e compactada com Zstandard.
-- `dados/pnadc_ocupados_2026.csv`: a mesma base, UTF-8, vírgula, decimal com ponto, nulos vazios e booleanos `true`/`false`.
-- `dados/empreendedorismo_feminino.dump`: backup PostgreSQL em formato custom, com estrutura e dados; exige `pg_restore` compatível com PostgreSQL 18 ou posterior.
-- `dados/fontes.csv`, `referencias.csv`, `dicionario_tratado.json`, `auditoria.json` e `rejeitados.csv`: proveniência, rótulos, tipos, contagens, hashes e quarentena.
-- `scripts/etl.py`: leitura posicional e tratamento em fluxo; usa SQLite somente como área temporária de deduplicação em disco.
-- `scripts/carregar_postgres.py`: carga atômica e evidências; lê conexão de `config/postgres.local.json` ou da variável de ambiente `PGCONNECTION`; a senha não é versionada.
-- `scripts/verificar_artefatos.py`: hashes e comparação integral das células CSV/Parquet, chaves e indicadores.
-- `scripts/verificar_postgres.py`: verifica contagens, tipos, restrições e relacionamentos no banco configurado.
-- `scripts/conectar_e_carregar.ps1`: solicita a senha e executa a carga local.
-- `config/postgres.local.json`: host, porta, banco e usuário da conexão fornecida, sem senha.
-- `sql/`: estrutura, views e consultas de validação.
-- `evidencias/`: resultados executados no ambiente local.
+## Origem e transformações
 
-A restauração do backup extraído do esquema `ef` do `big_data` em um segundo banco vazio foi executada com sucesso: 228.357 e 236.100 observações por trimestre e 12 linhas na view de resumo geográfico. A conferência adicional de 186 observações contra as linhas dos TXT originais também passou. Os resultados estão em `restauracao_backup.txt` e `conferencia_origem.json`.
+Os dois TXT PNADC_012026.txt e PNADC_022026.txt foram lidos na pasta de projeto fornecida, com o layout SAS `input_PNADC_trimestral.txt` e o dicionário e disponibilidade de variáveis XLS. A fonte é atribuída ao IBGE pela documentação fornecida. Os originais não foram alterados e seus SHA-256 identificam a versão exata utilizada.
 
-Os originais permanecem intactos na pasta de projeto fornecida. Não foram incluídos no ZIP por ocuparem 3,59 GB. Seus hashes SHA-256 identificam precisamente a versão usada. A atribuição ao IBGE é baseada na documentação fornecida; não foi feito novo download nem comprovada externamente a autenticidade desses arquivos.
+Foram lidas 1.032.879 linhas originais. O filtro `VD4002=1` excluiu 568.422 linhas fora do universo de ocupados. Depois da validação das variáveis, o filtro `UF=29` excluiu 443.751 ocupados de outras UFs, mantendo 20.706 da Bahia. Essas exclusões geográficas não são erros nem rejeições. Não foram encontrados inválidos, duplicatas ou conflitos. A nova execução partiu dos TXT originais, e todas as células foram comparadas ao recorte da versão tratada nacional anterior.
 
-## Reproduzir o tratamento
+A leitura é em fluxo; SQLite serve apenas como área temporária de deduplicação em disco. A exportação usa blocos de 25.000 registros. Não há imputação, subamostragem ou agregação antes da carga. Brancos opcionais viram NULL; renda ausente não vira zero e rendas válidas não são removidas por serem altas. Identificadores permanecem como texto, preservando zeros. Peso e renda usam Decimal, sem conversão intermediária para ponto flutuante.
 
-Requisitos: Python 3.12 e bibliotecas do `requirements.txt`. Em PowerShell, a partir desta pasta:
+Duplicatas com chave e linha original idênticas são removidas. Chaves iguais com conteúdo diferente retiram todas as ocorrências da base válida para revisão. Erros de largura, tipo, domínio e identificação são registrados em `dados/rejeitados.csv`.
+
+## Reproduzir a base da Bahia
+
+Execute os comandos a partir da pasta do projeto. Python 3.12 e as dependências fixadas estão em `requirements.txt`.
 
 ```powershell
 python -m venv .venv
 & ./.venv/Scripts/python.exe -m pip install -r requirements.txt
-& ./.venv/Scripts/python.exe scripts/etl.py --projeto 'C:/caminho/Projeto_Empreendedorismo_Feminino' --saida dados --temporarios work
+& ./.venv/Scripts/python.exe scripts/etl.py --projeto "C:/Users/saeb/Downloads/Projeto_Empreendedorismo_Feminino" --saida dados --temporarios work
 & ./.venv/Scripts/python.exe scripts/verificar_artefatos.py
 ```
 
-O ETL substitui os artefatos de sua pasta de saída e recria a área SQLite temporária. A memória é limitada por blocos de exportação de 25.000 observações; a leitura não carrega os TXT completos. A verificação independente usa um conjunto de chaves em memória para checar unicidade. Para períodos adicionais, as regras de período e contagens esperadas precisam ser revistas.
+`--projeto` recebe a pasta que contém `dados_brutos` e `documentação`. O ETL agora aplica `UF=29` automaticamente; não é necessário fornecer um filtro adicional. A saída mantém os nomes `pnadc_ocupados_2026.csv` e `pnadc_ocupados_2026.parquet`, mas seu conteúdo é exclusivamente da Bahia. Ao executar em uma pasta antiga, o ETL substitui esses arquivos; backups e relatórios antigos precisam ser atualizados separadamente.
 
-## Modelagem e regras
+## Conexão e carga
 
-O esquema `ef` contém `fonte`, `observacao` e 10 dimensões: `dim_uf`, `dim_capital`, `dim_v2007`, `dim_v2010`, `dim_vd3004`, `dim_vd4002`, `dim_vd4009`, `dim_v4019`, `dim_v4018` e `dim_vd4010`. Cada dimensão usa `codigo SMALLINT PRIMARY KEY` e `rotulo TEXT NOT NULL`. `fonte` usa SHA-256 como chave primária. A observação usa a chave composta `(ano,trimestre,upa,v1008,v1014,v1016,v2003)` e se relaciona às dimensões por chaves estrangeiras e à fonte por `arquivo_sha256`.
-
-Campos e tipos completos estão no dicionário JSON e no SQL. Os rótulos são extraídos do dicionário XLS, não escritos manualmente. São mantidas todas as UFs e ambos os sexos, com filtro `VD4002=1`. Empreendedor: `VD4009 IN (8,9)`; empreendedora: essa condição e `V2007=2`. Bahia: `UF=29`; Salvador: `UF=29 AND Capital=29`. Formalização significa registro do negócio no CNPJ, aplicada somente aos empreendedores; fora do universo ou sem resposta fica nula.
-
-Brancos opcionais viram NULL. Renda ausente não vira zero; zeros existentes são preservados. Códigos ignorados previstos no dicionário são mantidos. Não há imputação, subamostragem, exclusão geográfica, agregação anterior à carga ou remoção de rendas altas válidas. Campos obrigatórios inválidos, domínios desconhecidos, largura incorreta e inconsistências de identificação são separados em `rejeitados.csv`. Duplicatas com a mesma chave e linha original idêntica são removidas; conteúdos diferentes sob a mesma chave retiram ambas as ocorrências da base válida.
-
-As views calculam somas de V1028 e médias ponderadas usando apenas pesos de observações com renda informada no denominador. O rendimento é habitual do trabalho principal, nominal. Brasil, Bahia e Salvador se sobrepõem e não devem ser somados. Trimestres também não devem ser somados para obter pessoas distintas. Não se estimaram erros padrão ou intervalos de confiança. Pesos replicados ficam fora da base compacta, mas os originais foram preservados; UPA, estrato e peso calibrado permanecem para análises posteriores do desenho amostral.
-
-## Carga local ou em nuvem
-
-A conexão local já está configurada para host `localhost`, porta `5432`, banco `big_data` e usuário `postgres`. O esquema `ef` separa esta entrega das tabelas já existentes em `empreendedorismo`. A carga inicial foi executada. Para recarregar, execute `./scripts/conectar_e_carregar.ps1 -Substituir`: a senha é solicitada e mantida somente durante o processo. Sem essa opção, o carregador recusa alterar tabelas `ef` que já contenham dados. A substituição, quando autorizada pela opção, ocorre dentro de uma única transação. É necessária permissão para criar esquema, tabelas e views. O esquema existente deve ser compatível com esta versão; `CREATE TABLE IF NOT EXISTS` não migra versões anteriores.
-
-Para a conexão local, use `./scripts/conectar_e_carregar.ps1` na primeira carga ou a opção `-Substituir` em uma recarga intencional. O script solicita a senha e utiliza a configuração JSON. Alternativamente, configure `PGCONNECTION` no ambiente sem colocar credenciais no código, README ou Git e use `--local`. Para Aiven, obtenha no painel os parâmetros de conexão e o certificado CA e configure `sslmode=verify-full` e `sslrootcert` com o caminho do CA. O carregador exige essas configurações ao executar sem `--local` e verifica SSL na conexão.
+A configuração sem senha está em `config/postgres.local.json`: host localhost, porta 5432, banco big_data e usuário postgres. Para recarregar o esquema `ef` já existente, execute:
 
 ```powershell
-# PGCONNECTION deve estar configurada na sessão por um mecanismo seguro.
-& ./.venv/Scripts/python.exe scripts/carregar_postgres.py
-# No ambiente local, somente:
-& ./.venv/Scripts/python.exe scripts/carregar_postgres.py --local
+./scripts/conectar_e_carregar.ps1 -Substituir
 ```
 
-Após a carga no Aiven, executar `sql/03_validacao.sql` e guardar resultados ou capturas do painel com host e credenciais ocultados. O script grava `evidencias/carga_nuvem.json` e `resumo_nuvem.csv` somente após o commit. Conferir 464.457 linhas, as duas contagens trimestrais, SSL, tamanho efetivo com `pg_database_size`, armazenamento livre e limites do serviço. Esses valores não podem ser inferidos do tamanho do Parquet.
-
-Para restaurar o backup em banco vazio, configure os parâmetros seguros de conexão do `pg_restore` e execute:
+O script solicita a senha. Como alternativa, configure `PGPASSWORD` na sessão e execute:
 
 ```powershell
-pg_restore --no-owner --no-acl --dbname=nome_do_banco dados/empreendedorismo_feminino.dump
+& ./.venv/Scripts/python.exe scripts/carregar_postgres.py --local --substituir
+& ./.venv/Scripts/python.exe scripts/verificar_postgres.py
 ```
 
-Use o carregador para uma futura conexão Aiven como caminho preferencial, pois ele aplica a exigência de TLS e gera as evidências. O endereço `localhost:5432/big_data` é um banco local e não comprova hospedagem em nuvem. Não há serviço ou comprovação Aiven nesta entrega.
+A substituição é transacional e limitada às tabelas do esquema `ef`. O carregador esvazia as tabelas, aplica `sql/04_recorte_bahia.sql`, carrega os dados e valida a contagem. A restrição `CHECK (uf=29)` impede inserir observações de outras UFs. Sem `--substituir`, tabelas já populadas não são recarregadas. As demais tabelas já existentes no banco, incluindo o esquema `empreendedorismo`, não são geridas por esta entrega.
 
-## Código publicado no repositório da equipe
+Quando o CSV não estiver disponível no clone, o carregador o reconstrói automaticamente do Parquet. Não grave a senha no código ou no Git. `PGCONNECTION`, quando definida, tem precedência sobre a configuração JSON. O modo de nuvem continua exigindo `sslmode=verify-full`, `sslrootcert` e conexão TLS verificada.
 
-O repositório contém README, relatório, scripts, requirements, configuração sem senha, SQL, dicionário, auditoria, evidências e Parquet. A configuração `.gitattributes` preserva os bytes e hashes dos arquivos ao clonar. O `.gitignore` exclui o CSV volumoso e o backup; o Parquet de 6,50 MB e os pequenos CSV de referência são versionados. Ao clonar, o carregador reconstrói automaticamente o CSV da base a partir do Parquet, caso o CSV esteja ausente. O backup e o CSV completos acompanham o ZIP. A evidência de publicação encontra-se em `evidencias/repositorio.json`.
+## Modelo, tipos e regras
 
-## Referências usadas
+O esquema contém `fonte`, `observacao` e as dimensões `dim_uf`, `dim_capital`, `dim_v2007`, `dim_v2010`, `dim_vd3004`, `dim_vd4002`, `dim_vd4009`, `dim_v4019`, `dim_v4018` e `dim_vd4010`. Os catálogos de UF e capital contêm apenas o código 29; os demais preservam os códigos do dicionário, inclusive categorias que podem não ter ocorrência nesta amostra.
 
-- Solicitação de Entrega Técnica fase 2, arquivo PDF fornecido pelo usuário.
-- Empreendedorismo Feminino no Brasil - Levantamento de parâmetros e tipagem de dados, PDF fornecido pelo usuário.
-- Pasta Projeto_Empreendedorismo_Feminino: TXT dos dois trimestres, layout SAS, dicionário e disponibilidade de variáveis XLS.
+Cada dimensão tem `codigo SMALLINT PRIMARY KEY` e `rotulo TEXT NOT NULL`. `fonte` usa SHA-256 como chave primária. `observacao` usa `(ano,trimestre,upa,v1008,v1014,v1016,v2003)` como chave composta e se relaciona às dimensões e à fonte por chaves estrangeiras. Há índices para período, geografia, sexo e empreendedoras. Os campos, tipos, posições e larguras constam de `dados/dicionario_tratado.json` e `sql/01_estrutura.sql`.
 
-O Sebrae é citado no levantamento como contexto; nenhuma tabela de estudo anterior ou publicação complementar foi incorporada aos microdados tratados.
+Peso: NUMERIC(18,8). Renda: NUMERIC(12,2). Identificadores: VARCHAR com a largura da origem. Códigos: SMALLINT. Indicadores: BOOLEAN. Hash da origem: CHAR(64); linha de origem: BIGINT.
 
-## Inventário executado no banco informado
+Empreendedor: `VD4009 IN (8,9)`; empreendedora: essa condição e `V2007=2`. Salvador: `UF=29 AND Capital=29`. Formalização representa CNPJ, com base em V4019, apenas entre empreendedores; fora desse universo ou sem resposta, fica NULL. V4018 é uma faixa, não uma quantidade exata.
 
-`evidencias/estrutura_postgres.json` contém cada tabela e sua quantidade de registros, todos os campos e tipos, as definições de chaves primárias, estrangeiras e CHECKs e as três views. A carga de `ef` ocupa 182.509.568 bytes somando tabelas e índices. `pg_database_size(big_data)` inclui também os esquemas já existentes e por isso não representa apenas esta entrega.
+As views oferecem **somente Bahia e Salvador**; não há resumo Brasil com dados incompletos. Estimativas pontuais usam soma de V1028; a renda média usa soma(peso × renda) / soma(peso) apenas para observações com renda informada no mesmo grupo. Rendas são habituais do trabalho principal e nominais. Erros padrão, intervalos de confiança e comparações reais de renda exigem etapas adicionais de desenho amostral e deflacionamento. Os originais preservam os pesos replicados; UPA, estrato e peso calibrado permanecem na base compacta.
+
+## Consultas
+
+```sql
+-- Toda a base atual: apenas Bahia, incluindo Salvador.
+SELECT * FROM ef.observacao;
+
+-- Salvador.
+SELECT * FROM ef.observacao WHERE uf=29 AND capital=29;
+
+-- Bahia fora de Salvador: NULL em Capital permanece no restante do estado.
+SELECT * FROM ef.observacao WHERE uf=29 AND capital IS DISTINCT FROM 29;
+
+SELECT uf,capital,count(*) FROM ef.observacao GROUP BY uf,capital;
+```
+
+## Evidências e distribuição
+
+`verificacao_artefatos.json` confere hashes, tipos, igualdade integral CSV/Parquet, chaves, indicadores e UF. `comparacao_recorte.json` confirma a igualdade integral com o recorte UF=29 da versão anterior. `carga_local.json`, `estrutura_postgres.json`, `validacao_local.txt`, `resumo_local.csv` e `restauracao_backup.txt` comprovam a carga e a restauração da versão Bahia. `auditoria.json` identifica entradas e saídas; o manifesto do pacote inclui o backup e o relatório.
+
+O ZIP inclui CSV, Parquet, backup, relatório, scripts, SQL e evidências. O Git versiona o Parquet e os metadados; exclui CSV volumoso, backup, senha, ambiente virtual e temporários. `.gitattributes` mantém os bytes necessários à conferência de hashes. O relatório conserva as seis páginas solicitadas, sem os tópicos e a página 7 removidos anteriormente.

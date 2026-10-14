@@ -29,6 +29,7 @@ def load(root,local,config=None,substituir=False):
                 if cur.fetchone()[0] and not substituir:
                     raise SystemExit('O esquema ef já contém dados. Use --substituir somente para uma recarga intencional.')
             cur.execute('TRUNCATE TABLE '+','.join(['ef.observacao','ef.fonte']+['ef.dim_'+v for v in dims]))
+            cur.execute((root/'sql/04_recorte_bahia.sql').read_text(encoding='utf-8'))
             for r in refs:cur.execute(f"INSERT INTO ef.dim_{r['variavel']} (codigo,rotulo) VALUES (%s,%s)",(r['codigo'],r['rotulo']))
             for filename,table in [('fontes.csv','fonte'),('pnadc_ocupados_2026.csv','observacao')]:
                 with (root/'dados'/filename).open('r',encoding='utf-8',newline='') as f:
@@ -50,6 +51,9 @@ def load(root,local,config=None,substituir=False):
             if not local and (not ssl or not ssl[0]):raise ValueError('Conexão de nuvem sem SSL')
         # Só gera evidências depois de COMMIT bem-sucedido.
         conn.commit()
+        with conn.cursor() as cur:
+            cur.execute("SELECT pg_total_relation_size('ef.observacao'),pg_database_size(current_database())")
+            size=cur.fetchone()
     evidence=root/'evidencias';evidence.mkdir(exist_ok=True)
     prefix='local' if local else 'nuvem'
     record=dict(ambiente=prefix,host=params.get('host','localhost'),porta=params.get('port','5432'),banco=params.get('dbname'),schema='ef',executado_em_utc=datetime.now(timezone.utc).isoformat(),total=actual,por_trimestre=counts,fontes=nsources,referencias=nrefs,bytes_tabela_indices=size[0],bytes_banco=size[1],postgresql=version,ssl=ssl[0] if ssl else False)

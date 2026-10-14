@@ -99,6 +99,7 @@ def run(project,out,scratch):
                     if occ not in (b'',b'1',b'2'):raise ValueError('VD4002 fora do domínio')
                     if occ!=b'1':c['fora_universo']+=1;continue
                     c['ocupados']+=1;d=convert(raw,layout,domains,quarter)
+                    if d['uf']!=29:c['fora_recorte_geografico']+=1;continue
                     key='|'.join(str(d[v.lower()]) for v in KEY);digest=hashlib.sha256(raw).hexdigest()
                     try:db.execute('INSERT INTO rows(k,data,digest,source,line) VALUES(?,?,?,?,?)',(key,json.dumps(d),digest,path.name,line));c['inseridos']+=1
                     except sqlite3.IntegrityError:
@@ -112,7 +113,7 @@ def run(project,out,scratch):
                 if line%25000==0:db.commit()
         db.commit();c['conflitos_primeiros']=db.execute('SELECT COUNT(*) FROM rows WHERE source=? AND conflict=1',(path.name,)).fetchone()[0]
         c['tratados']=db.execute('SELECT COUNT(*) FROM rows WHERE source=? AND conflict=0',(path.name,)).fetchone()[0]
-        assert c['originais']==c['fora_universo']+c['invalidos']+c['duplicatas_identicas']+c['conflitos_adicionais']+c['conflitos_primeiros']+c['tratados']
+        assert c['originais']==c['fora_universo']+c['fora_recorte_geografico']+c['invalidos']+c['duplicatas_identicas']+c['conflitos_adicionais']+c['conflitos_primeiros']+c['tratados']
         stats.append(dict(arquivo=path.name,larguras=dict(widths),**c));sources.append(dict(arquivo=path.name,sha256=h.hexdigest(),bytes=path.stat().st_size,ano=2026,trimestre=quarter));print(stats[-1],flush=True)
     for source,line,digest in db.execute('SELECT source,line,digest FROM rows WHERE conflict=1'):rej.writerow([source,line,'primeira ocorrência de chave em conflito',digest])
     rej_file.close()
@@ -135,7 +136,9 @@ def run(project,out,scratch):
     with (out/'referencias.csv').open('w',encoding='utf-8',newline='') as f:
         w=csv.writer(f);w.writerow(['variavel','codigo','rotulo'])
         for v,codes in domains.items():
-            for code,label in codes.items():w.writerow([v.lower(),code,label])
+            for code,label in codes.items():
+                if v in {'UF','Capital'} and code!=29:continue
+                w.writerow([v.lower(),code,label])
     with (out/'fontes.csv').open('w',encoding='utf-8',newline='') as f:
         w=csv.DictWriter(f,fieldnames=list(sources[0]));w.writeheader();w.writerows(sources)
     data_dict=[]
@@ -146,7 +149,7 @@ def run(project,out,scratch):
     (out/'dicionario_tratado.json').write_text(json.dumps(data_dict,ensure_ascii=False,indent=2),encoding='utf-8')
     docs=[project/'dados_brutos/input_PNADC_trimestral.txt',*sorted((project/'documentação').glob('*.xls'))]
     gerados={'dicionario_tratado.json','fontes.csv','pnadc_ocupados_2026.csv','pnadc_ocupados_2026.parquet','referencias.csv','rejeitados.csv'}
-    audit=dict(versao='fase2-v1',estatisticas=stats,fontes=sources,documentacao=[dict(arquivo=p.name,sha256=sha(p)) for p in docs],nulos=dict(nulls),indicadores_verdadeiros=dict(flags),total=sum(s['tratados'] for s in stats),nuvem='Pendente: serviço Aiven ainda não criado',artefatos={p.name:dict(bytes=p.stat().st_size,sha256=sha(p)) for p in out.glob('*') if p.is_file() and p.name in gerados})
+    audit=dict(versao='fase2-bahia-v1',recorte_geografico={'uf':29,'descricao':'Toda a Bahia, incluindo Salvador','regra_salvador':'UF=29 AND Capital=29'},estatisticas=stats,fontes=sources,documentacao=[dict(arquivo=p.name,sha256=sha(p)) for p in docs],nulos=dict(nulls),indicadores_verdadeiros=dict(flags),total=sum(s['tratados'] for s in stats),nuvem='Pendente: serviço Aiven ainda não criado',artefatos={p.name:dict(bytes=p.stat().st_size,sha256=sha(p)) for p in out.glob('*') if p.is_file() and p.name in gerados})
     (out/'auditoria.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2),encoding='utf-8');db.close()
 
 if __name__=='__main__':

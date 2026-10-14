@@ -1,5 +1,10 @@
 {
-  "versao": "fase2-v1",
+  "versao": "fase2-bahia-v1",
+  "recorte_geografico": {
+    "uf": 29,
+    "descricao": "Toda a Bahia, incluindo Salvador",
+    "regra_salvador": "UF=29 AND Capital=29"
+  },
   "estatisticas": [
     {
       "arquivo": "PNADC_012026.txt",
@@ -9,9 +14,10 @@
       "originais": 511149,
       "fora_universo": 282792,
       "ocupados": 228357,
-      "inseridos": 228357,
+      "fora_recorte_geografico": 218295,
+      "inseridos": 10062,
       "conflitos_primeiros": 0,
-      "tratados": 228357
+      "tratados": 10062
     },
     {
       "arquivo": "PNADC_022026.txt",
@@ -20,10 +26,11 @@
       },
       "originais": 521730,
       "ocupados": 236100,
-      "inseridos": 236100,
+      "fora_recorte_geografico": 225456,
       "fora_universo": 285630,
+      "inseridos": 10644,
       "conflitos_primeiros": 0,
-      "tratados": 236100
+      "tratados": 10644
     }
   ],
   "fontes": [
@@ -57,20 +64,20 @@
     }
   ],
   "nulos": {
-    "capital": 349127,
-    "v4019": 317732,
-    "formalizada": 317732,
-    "v4018": 92868,
-    "vd4016": 9261
+    "capital": 17324,
+    "v4019": 13660,
+    "formalizada": 13660,
+    "v4018": 4330,
+    "vd4016": 491
   },
   "indicadores_verdadeiros": {
-    "is_empreendedor": 146725,
-    "is_empreendedora": 48680,
-    "formalizada": 45452,
     "is_bahia": 20706,
+    "is_empreendedor": 7046,
+    "is_empreendedora": 2371,
+    "formalizada": 1405,
     "is_salvador": 3382
   },
-  "total": 464457,
+  "total": 20706,
   "nuvem": "Pendente: serviço Aiven ainda não criado",
   "artefatos": {
     "dicionario_tratado.json": {
@@ -82,28 +89,20 @@
       "sha256": "544ac6a2e9d38ede81e37c096eedffbdcd2dbf5f7537110d259482f435bfc055"
     },
     "pnadc_ocupados_2026.csv": {
-      "bytes": 82825879,
-      "sha256": "3f67cc920f88a351accd2bb6e416bfc8a1e166bab8c0e7a5581b55fe7ac162f4"
+      "bytes": 3672597,
+      "sha256": "56e0ec04ce8030c1a293dae268b32df73cf3d904a97114a50e9ac4943c346a68"
     },
     "pnadc_ocupados_2026.parquet": {
-      "bytes": 6504400,
-      "sha256": "1815fed9ecad7026904019b237b5e769c7810a26992327492c56b6362f162a4f"
+      "bytes": 297712,
+      "sha256": "272e3f8997037a58f8385fa85981cdbe4a13807ba09a61c5f1396fb79a7c7ca3"
     },
     "referencias.csv": {
-      "bytes": 3399,
-      "sha256": "78713a96deca56dd3e574e8737f92530b4e12bd501756f2c6fadc0a3db06ed92"
+      "bytes": 1864,
+      "sha256": "f6b86248772b2c2e12846f0b9ecec34f8f6056cb69319bb8dd7b497197d69551"
     },
     "rejeitados.csv": {
       "bytes": 38,
       "sha256": "bf30258f1de2dbfbb058de377d24f9896cc9cf1b496c75de28bf8ea172609fa7"
     }
-  },
-  "versao_entrega": "fase2-v2",
-  "armazenamento_local": {
-    "host": "localhost",
-    "porta": 5432,
-    "banco": "big_data",
-    "esquema": "ef",
-    "total": 464457
   }
 }
